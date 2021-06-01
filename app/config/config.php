@@ -9,7 +9,7 @@
 	define('APP_ROOT', dirname(dirname(__FILE__)));
 
 	// ROOT URL
-	define('APP_URL', 'localhost/php-app-using-mvc');
+	define('APP_URL', 'http://localhost/php-app-using-mvc');
 
 	// SITE NAME
 	define('SITE_NAME', 'Registration App');

@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title><?php echo SITE_NAME; ?></title>
-</head>
-<body>
-	
-	<h2>Hello Sajid</h2>
-	<h3>Welcome to Registration App in MVC</h3>
-</body>
-</html>
+<?php
+   require APP_ROOT . '/views/includes/head.php';
+?>
+<div id="section-landing">
+    
+    <div class="wrapper-landing">
+        <p>Not a Registered User ? <a href="<?php echo APP_URL; ?>/users/login" class="btn-login">Register</a></p> <br />
+        <p>Already Registered ? <a href="<?php echo APP_URL; ?>/users/login" class="btn-login">Sign In</a></p>
+    </div>
+</div>
