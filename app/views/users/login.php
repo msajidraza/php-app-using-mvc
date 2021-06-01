@@ -22,7 +22,7 @@
 
 				<button type="submit" id="btnsubmit" value="submit">Submit</button>
 
-				<p class="options">Not a register user ? <a href="<?php echo APP_URL; ?>/users/register">Register</a></p>
+				<p class="options">Not a registered user ? <a href="<?php echo APP_URL; ?>/users/register">Register</a></p>
 
 			</form>
 

@@ -13,10 +13,10 @@
 
 		public function __construct()
 		{
-			$conn = 'msql:host='.$this->dbHost.';dbname='.$this->dbName;
+			$conn = 'mysql:host='.$this->dbHost.';dbname='.$this->dbName;
 			$options = array(
-				PDO::ATTR_PERSISTENT => true, 
-				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 
+				PDO::ATTR_PERSISTENT => true,
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
 			);
 
 			try {
