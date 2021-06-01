@@ -11,6 +11,7 @@
 
 		public function __construct()
 		{
+
 			$url = $this->getUrl();
 
 			if(file_exists('../app/Controllers/' . ucwords($url[0]) . '.php'))

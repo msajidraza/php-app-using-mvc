@@ -14,8 +14,7 @@
 		public function index()
 		{
 			$data = [
-				'title' => 'Home Page',
-				'msg'   => 'Hi Sajid'
+				'title' => 'Home Page'
 			];
 
 			$this->view('index', $data);

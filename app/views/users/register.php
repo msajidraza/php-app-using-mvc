@@ -2,14 +2,11 @@
 	require APP_ROOT . '/views/includes/head.php';
 	?>
 	
-	<div>
-		<h3>Welcome to Registration App in MVC</h3>
-	</div>
-
+	
 	<div class="container">
 		<div class="login-wrapper">
 			
-			<h3>Register</h3>
+			<h1>REGISTER</h1>
 
 			<form action="<?php echo APP_URL; ?>/users/login" method="POST">
 
