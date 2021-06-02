@@ -24,58 +24,55 @@
 			}
 			catch (PDOException $e)
 			{
-				$this->error = $e->getMessage();
-				echo $this->error;
+				$this->$error = $e->getMessage();
+				echo $this->$error;
 			}
 		}
 
 		public function query($sql)
 		{
-			$this->statemet = $this->dbHandler->prepare($sql);
+			$this->$statemet = $this->dbHandler->prepare($sql);
 		}
 
-		public function bind($parameter, $value, $type = [])
-		{
-			switch (is_null($type)) 
-			{
-				case is_int($value):
-					$type = PDO::PARAM_INT;
-					break;
+		//Bind values
+        public function bind($parameter, $value, $type = null) {
+            switch (is_null($type)) 
+            {
+                case is_int($value):
+                    $type = PDO::PARAM_INT;
+                    break;
+                case is_bool($value):
+                    $type = PDO::PARAM_BOOL;
+                    break;
+                case is_null($value):
+                    $type = PDO::PARAM_NULL;
+                    break;
+                default:
+                    $type = PDO::PARAM_STR;
+            }
+            $this->$statement->bindValue($parameter, $value, $type);
+        }
 
-				case is_bool($value):
-					$type = PDO::PARAM_BOOL;
-					break;
-
-				case is_null($value):
-					$type = PDO::PARAM_NULL;
-					break;	
-
-				default:
-					$type = PDO::PARAM_STR;
-					break;
-			}
-			$this->statement->bindValue($parameter, $value, $type);
-		}
 
 		public function execute()
 		{
-			return $this->statement->execute();
+			return $this->$statement->execute();
 		}
 
 		public function resulSet()
 		{
 			$this->execute();
-			return $this->statement->fetchAll(PDO::FETCH_OBJ);
+			return $this->$statement->fetchAll(PDO::FETCH_OBJ);
 		}
 
 		public function single()
 		{
 			$this->execute();
-			return $this->statement->fetch(PDO::FETCH_OBJ);
+			return $this->$statement->fetch(PDO::FETCH_OBJ);
 		}
 
 		public function rowCount()
 		{
-			return $this->statement->rowCount();
+			return $this->$statement->rowCount();
 		}
 	}

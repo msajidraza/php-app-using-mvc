@@ -12,7 +12,9 @@ class User {
 	// For registration
 	public function register($data) 
 	{
-        $this->db->query('INSERT INTO users (name, email, password, phone, address, city, state, country, zip, time_zone, profile_pic, created_at) VALUES(:name, :email, :password, :phone, :address, :city, :state, :country, :zip, :time_zone, :profile_pic, :created_at)');
+        //$this->db->query('INSERT INTO users (name, email, password, phone, address, city, state, country, zip, time_zone, profile_pic, created_at) VALUES(:name, :email, :password, :phone, :address, :city, :state, :country, :zip, :time_zone, :profile_pic, :created_at)');
+
+        $this->db->query('INSERT INTO users (name, email, password, phone, address, city, state, country, zip, time_zone, created_at) VALUES (:name, :email, :password, :phone, :address, :city, :state, :country, :zip, :time_zone, :created_at)');
 
         $created_at = date("Y-m-d H:i:s");
         //Bind values
@@ -26,7 +28,7 @@ class User {
         $this->db->bind(':country', $data['country']);
         $this->db->bind(':zip', $data['zip']);
         $this->db->bind(':time_zone', $data['time_zone']);
-        $this->db->bind(':profile_pic', $data['profile_pic']);
+        //$this->db->bind(':profile_pic', $data['profile_pic']);
         $this->db->bind(':created_at', $created_at);
 
         //Execute function
@@ -37,10 +39,28 @@ class User {
         }
     }
 
-    // For login
+    // For login without hashed password
     public function login($username, $password) 
     {
-        $this->db->query('SELECT * FROM users WHERE username = :username');
+        $this->db->query('SELECT * FROM users WHERE email = :username AND password = :password');
+
+        //Bind value
+        $this->db->bind(':username', $username);
+        $this->db->bind(':password', $password);
+
+        $row = $this->db->single();
+
+        if ($username == $row->email && $password == $row->password) {
+            return $row;
+        } else {
+            return false;
+        }
+    }
+
+    // For login with hashed password
+    public function loginHashPwd($username, $password) 
+    {
+        $this->db->query('SELECT * FROM users WHERE email = :username');
 
         //Bind value
         $this->db->bind(':username', $username);
@@ -48,7 +68,6 @@ class User {
         $row = $this->db->single();
 
         $hashedPassword = $row->password;
-
         if (password_verify($password, $hashedPassword)) {
             return $row;
         } else {
@@ -62,7 +81,7 @@ class User {
 		$this->db->query('SELECT * FROM users WHERE email = :email');
 		$this->db->bind(':email', $email);
 
-		if($this->db->rowCount() > 0)
+		if($this->db->rowCount() >= 1)
 		{
 			return true;
 		}
@@ -71,5 +90,24 @@ class User {
 			return false;
 		}
 	}
+
+    // getting users information
+    public function userProfile($user_id) 
+    {
+        $this->db->query('SELECT * FROM users WHERE id = :id');
+
+        //Bind value
+        $this->db->bind(':id', $user_id);
+        
+        if($this->db->rowCount() == 1)
+        {
+            $row = $this->db->single();
+            return $row;
+        }
+        else
+        {
+            return false;
+        }   
+    }
 	
 }
