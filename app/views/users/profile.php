@@ -7,6 +7,12 @@
 	} 
 
 	require APP_ROOT . '/views/includes/head.php';
+
+	$tarr = explode(' - ', $_SESSION['time_zone']);
+	$timezoneIden = $tarr[1];
+	date_default_timezone_set($timezoneIden);
+	
+	$currentTime = date('H:i:s');
 	?>
 	
 	
@@ -52,9 +58,11 @@
 					<div class="profile-value"><?php echo $_SESSION['zip']; ?></div>
 					<div class="profile-label">Zip Code</div>
 
+					<div class="profile-value"><?php echo $currentTime; ?></div>
+					<div class="profile-label">Current Time</div>
+					
 					<div class="profile-value"><?php echo $_SESSION['time_zone']; ?></div>
 					<div class="profile-label">Time Zone</div>
-					
 
 				</div>
 		    </div>
