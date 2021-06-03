@@ -11,13 +11,12 @@
 	
 	
 	<div class="container">
-		<div class="login-wrapper">
+		<div class="profile-wrapper">
 			
 			<h1>YOUR PROFILE</h1>
-
 			
 
-				<span>Profile Pic</span> : <span class="userVal" id="profile_pic"><?php echo $_SESSION['profile_pic']; ?></span><br />
+				<span>Profile Pic</span> : <span class="userVal" id="profile_pic"><img src="<?php echo APP_URL; ?>/public/img/ppics/<?php echo $_SESSION['profile_pic']; ?>" width="128" height="128"></span><br />
 				<span>Name</span> : <span class="userVal" id="name"><?php echo $_SESSION['name']; ?></span><br />
 				<span>Email</span> : <span class="userVal" id="email"><?php echo $_SESSION['email']; ?></span><br />
 				<span>Phone</span> : <span class="userVal" id="phone"><?php echo $_SESSION['phone']; ?></span><br />

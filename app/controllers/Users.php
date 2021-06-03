@@ -9,6 +9,17 @@
 			$this->userModel = $this->model('User'); 
 		}
 
+
+        // Registration related functions
+        public function register()
+        {
+            $data = [
+                'title' => 'Registration Page',
+            ];
+            
+            $this->view('users/register', $data);
+        }
+
         public function validateInputs()
         {           
             // Sanitize POST data
@@ -26,7 +37,7 @@
                 'country' => trim($_POST['country']),
                 'zip' => trim($_POST['zip']),
                 'time_zone' => trim($_POST['time_zone']),
-                //'profile_pic' => trim($_POST['profile_pic']),
+                'profile_pic' => trim($_POST['profile_pic']),
 
                 'status' => 'success',
                 'response' => '',
@@ -113,9 +124,7 @@
                     $data['status'] = 'error';
                 }
             }
-
-            
-            
+                        
             if (empty($data['phone'])) 
             {
                 $data['phoneError'] = 'Please enter your phone number.';
@@ -126,8 +135,6 @@
                 $data['phoneError'] = 'Phone can only contain mumbers.';
                 $data['status'] = 'error';
             }
-
-
             
             if (empty($data['address'])) 
             {
@@ -139,7 +146,6 @@
                 $data['addressError'] = 'Address can only contain letters and numbers.';
                 $data['status'] = 'error';
             }
-
             
             if (empty($data['city'])) 
             {
@@ -152,8 +158,7 @@
                 $data['status'] = 'error';
             }
 
-            
-            if (empty($data['state'])) 
+                        if (empty($data['state'])) 
             {
                 $data['stateError'] = 'Please enter your state.';
                 $data['status'] = 'error';
@@ -185,8 +190,6 @@
                 $data['zipError'] = 'Zip Code can only contain numbers.';
                 $data['status'] = 'error';
             }
-            
-            //print_r($data); die();
 
             // Make sure that errors are empty
             if ($data['status'] == 'error') 
@@ -217,51 +220,16 @@
             } 
         }
 
-		public function register()
-		{
-			$data = [
-				//'title' => 'Registration Page',
-				'name' => '',
-				'email' => '',
-				'password' => '',
-				'confirmPassword' => '',
-				'phone' => '',
-				'address' => '',
-				'city' => '',
-				'state' => '',
-				'country' => '',
-				'zip' => '',
-				'time_zone' => '',
-				//'profile_pic' => '',
-
-				'error' => false,
-	            'success' => '',
-	            'response' => '',
-				'nameError' => '',
-				'emailError' => '',
-				'passwordError' => '',
-				'confirmPasswordError' => '',
-				'phoneError' => '',
-				'addressError' => '',
-				'cityError' => '',
-				'stateError' => '',
-				'countryError' => '',
-				'zipError' => '',
-				'time_zoneError' => '',
-				//'profile_picError' => '',
-			];
-			
-			$this->view('users/register', $data);
-		}
-
+		
+        // Login Related Functions
 		public function login()
 		{
 			$data = [
 				'title' => 'Sign In Page',
-                'username' => '',
-                'password' => '',
-				'usernameError' => '',
-				'passwordError' => ''
+                //'username' => '',
+                //'password' => '',
+				//'usernameError' => '',
+				//'passwordError' => ''
 			];
 
 			$this->view('users/login', $data);
@@ -343,6 +311,54 @@
 
 	        //header('location:' . APP_URL . '/users/profile');
 	    }
+
+        public function uploadProfilePic()
+        {
+            if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
+            {
+                $path = "../public/img/ppics/"; //set your folder path
+                $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg", "GIF", "JPG", "PNG"); //add the formats you want to upload
+                
+                $name = $_FILES['profileimg']['name']; //get the name of the image
+                $size = $_FILES['profileimg']['size']; //get the size of the image
+                if(strlen($name)) //check if the file is selected or cancelled after pressing the browse button. 
+                {
+                    list($txt, $ext) = explode(".", $name); //extract the name and extension of the image
+                    if(in_array($ext, $valid_formats)) //if the file is valid go on.
+                    {
+                        if($size < 2098888) // check if the file size is more than 2 MB
+                        {           
+                            $actual_pic_name = time()."_".rand().".".$ext; //actual image name going to store in your folder                
+                            $tmp = $_FILES['profileimg']['tmp_name']; 
+                            if(move_uploaded_file($tmp, $path.$actual_pic_name)) //check the path if it is fine
+                            {
+                                move_uploaded_file($tmp, $path.$actual_pic_name); //move the file to the folder
+                                //display the image after successfully upload
+                                
+                                echo '<img src="../public/img/ppics/'.$actual_pic_name.'" width="128" height="128"> <input type="hidden" name="actual_pic_name" id="actual_pic_name" value="'.$actual_pic_name.'" />';
+                            }
+                            else
+                            {
+                                echo "uploading failed";
+                            }
+                        }
+                        else
+                        {
+                            echo "Image file size max 2 MB";                    
+                        }
+                    }
+                    else
+                    {
+                        echo "Invalid file format..";   
+                    }
+                }
+                else
+                {       
+                    echo "Please select File..!";
+                }       
+                exit;
+            }
+        }
 
 	    public function logout() 
 	    {

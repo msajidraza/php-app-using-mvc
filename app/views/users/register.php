@@ -8,7 +8,20 @@
 			
 			<h1>REGISTER</h1>
 
+			<div id='preview' style="width: 100%; margin: 20px auto;">
+            	<img src="<?php echo APP_URL; ?>/public/img/male.png" width="128" height="128">
+            </div>
+
+			<div>
+                <form id="imageform" method="post" enctype="multipart/form-data" action='<?php echo APP_URL; ?>/users/uploadProfilePic'>
+                    <span id="pimg"><input type="file" id="profileimg" name="profileimg" placeholder="Upload your pic (upto 2MB)" /></span>
+                </form>
+            </div>
+
+
 			<form id="myForm" name="myForm" method="POST">
+
+				<input type="hidden" id="profile_pic" name="profile_pic">
 
 				<input type="text" id="name" name="name" placeholder="Your Name *">
 				<span class="invalidInput" id="nameError"></span>
@@ -42,13 +55,8 @@
 
 				<input type="text" id="time_zone" name="time_zone" placeholder="Your Time Zone *">
 				<span class="invalidInput" id="time_zoneError"></span>
-
-				<!-- <input type="file" name="profile_pic" placeholder="Your Pic"> -->
-				<!-- <span class="invalidInput">
-					<?php // echo $data['profile_picError']; ?>
-				</span> -->
-
-				<button type="submit" id="btnsubmit" value="submit">Submit</button>
+				
+				<button type="submit" id="btnsubmit" value="submit">Register Now</button>
 
 				<p class="options">Already a member ? <a href="<?php echo APP_URL; ?>/users/login">Sign In</a></p>
 
@@ -59,10 +67,26 @@
 	</div>
 
 </body>
-</html>
-
+</html> 
+<script type="text/javascript" src="<?php echo APP_URL; ?>/public/js/jquery.form.js"></script>
 <script type="text/javascript">
+
 	$(document).ready(function(){
+
+		$('#profileimg').change(function(){ 
+			$("#preview").html('');
+			$("#preview").html('<img src="<?php echo APP_URL; ?>/public/img/preloader.gif" width="128" height="128" alt="Uploading...."/>');
+			$("#imageform").ajaxForm({
+				target: '#preview',
+				success: function(data) {
+					var profile_pic = $('#actual_pic_name').val();
+					$('#profile_pic').val(profile_pic);
+
+					//document.getElementById('profile_pic').value = profile_pic;
+				}
+			}).submit();
+		});
+
 
 		$('#myForm').on('submit', function(e){
 			e.preventDefault();
@@ -177,7 +201,7 @@
 						{
 							$('#time_zoneError').html('');
 						}
-						$('#btnsubmit').html('Submit');
+						$('#btnsubmit').html('Register Now');
 						$('#btnsubmit').attr('disabled', false);
 					}
 					if(data['status'] == 'success')
@@ -185,11 +209,14 @@
 						alert(data['response']);
 						//$('#response').html(data['response']);
 
-						$('#btnsubmit').html('Submit');
+						$('#btnsubmit').html('Register Now');
 						$('#btnsubmit').attr('disabled', false);
+						$('#imageForm')[0].reset();
 						$('#myForm')[0].reset();
+						$('#preview').html('<img src="<?php echo APP_URL; ?>/public/img/male.png" width="128" height="128">');
 
-						/*$('#nameError').html('');
+						/*
+						$('#nameError').html('');
 						$('#emailError').html('');
 						$('#passwordError').html('');
 						$('#phoneError').html('');
@@ -198,7 +225,8 @@
 						$('#stateError').html('');
 						$('#countryError').html('');
 						$('#zipError').html('');
-						$('#time_zoneError').html('');*/
+						$('#time_zoneError').html('');
+						*/
 					}
 					
 				}

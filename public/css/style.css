@@ -32,14 +32,14 @@ html, body {
 
 .wrapper-landing p {
     font-size: 40px;
-    color: #ffffff;
+    color: #34495e;
     margin: 0;
     font-weight: 500;
 }
 
 .wrapper-landing p a {
     background-color: #4a235a;
-    color: #ffffff;
+    color: #34495e;
     text-decoration: none;
 }
 
@@ -51,6 +51,15 @@ html, body {
 .container {
 	width: 100%;
 	margin: 30px auto;
+}
+
+.profile-wrapper {
+	width: 70%;
+	margin: 0 auto;
+	padding: 20px 0 20px 0;
+	text-align: center;
+	border: 1px solid #d5d8dc ;
+	background-color: #fff;
 }
 
 .login-wrapper {

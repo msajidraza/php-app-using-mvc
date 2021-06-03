@@ -12,11 +12,10 @@ class User {
 	// For registration
 	public function register($data) 
 	{
-        //$this->db->query('INSERT INTO users (name, email, password, phone, address, city, state, country, zip, time_zone, profile_pic, created_at) VALUES(:name, :email, :password, :phone, :address, :city, :state, :country, :zip, :time_zone, :profile_pic, :created_at)');
-
-        $this->db->query('INSERT INTO users (name, email, password, phone, address, city, state, country, zip, time_zone, created_at) VALUES (:name, :email, :password, :phone, :address, :city, :state, :country, :zip, :time_zone, :created_at)');
+        $this->db->query('INSERT INTO users (name, email, password, phone, address, city, state, country, zip, time_zone, profile_pic, created_at) VALUES(:name, :email, :password, :phone, :address, :city, :state, :country, :zip, :time_zone, :profile_pic, :created_at)');
 
         $created_at = date("Y-m-d H:i:s");
+
         //Bind values
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':email', $data['email']);
@@ -28,7 +27,7 @@ class User {
         $this->db->bind(':country', $data['country']);
         $this->db->bind(':zip', $data['zip']);
         $this->db->bind(':time_zone', $data['time_zone']);
-        //$this->db->bind(':profile_pic', $data['profile_pic']);
+        $this->db->bind(':profile_pic', $data['profile_pic']);
         $this->db->bind(':created_at', $created_at);
 
         //Execute function
