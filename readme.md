@@ -9,16 +9,16 @@ Installation Guide
 Extract and copy this project to the root directory of your server
 
 for Wamp
-\wamp\www\
+"\wamp\www\"
 
 for Xamp
-\xampp\htdocs\
+"\xampp\htdocs\"
 
-Create database in phpmyadmin and create the table by importing the .sql file located at 
+Create database in phpmyadmin and create the table by importing the "db_registerapp.sql" file located at 
 \php-app-using-mvc\app\dbschema
 
 go to config.php file located at 
-\php-app-using-mvc\app\config
+"\php-app-using-mvc\app\config\"
 
 set the variables as per your environment
 
