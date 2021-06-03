@@ -169,37 +169,37 @@
 
 				<input type="hidden" id="profile_pic" name="profile_pic">
 
-				<input type="text" id="name" name="name" placeholder="Your Name *">
+				<input type="text" id="name" name="name" placeholder="Your Name *" onkeyup="clearError(this.id);">
 				<span class="invalidInput" id="nameError"></span>
 
-				<input type="text" id="email" name="email" placeholder="Your Email *">
+				<input type="text" id="email" name="email" placeholder="Your Email *" onkeyup="clearError(this.id);">
 				<span class="invalidInput" id="emailError"></span>
 
-				<input type="password" id="password" name="password" placeholder="Password at least 8 char *">
+				<input type="password" id="password" name="password" placeholder="Password at least 8 char *" onkeyup="clearError(this.id);">
 				<span class="invalidInput" id="passwordError"></span>
 
-				<input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password *">
+				<input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password *" onkeyup="clearError(this.id);">
 				<span class="invalidInput" id="confirmPasswordError"></span>
 
-				<input type="text" id="phone" name="phone" placeholder="Phone *">
+				<input type="text" id="phone" name="phone" placeholder="Phone *" onkeyup="clearError(this.id);">
 				<span class="invalidInput" id="phoneError"></span>
 
-				<input type="text" id="address" name="address" placeholder="Your Address *">
+				<input type="text" id="address" name="address" placeholder="Your Address *" onkeyup="clearError(this.id);">
 				<span class="invalidInput" id="addressError"></span>
 
-				<input type="text" id="city" name="city" placeholder="Your City *">
+				<input type="text" id="city" name="city" placeholder="Your City *" onkeyup="clearError(this.id);">
 				<span class="invalidInput" id="cityError"></span>
 
-				<input type="text" id="state" name="state" placeholder="Your State *">
+				<input type="text" id="state" name="state" placeholder="Your State *" onkeyup="clearError(this.id);">
 				<span class="invalidInput" id="stateError"></span>
 
-				<input type="text" id="country" name="country" placeholder="Your Country *">
+				<input type="text" id="country" name="country" placeholder="Your Country *" onkeyup="clearError(this.id);">
 				<span class="invalidInput" id="countryError"></span>
 
-				<input type="text" id="zip" name="zip" placeholder="Your Zip Code *">
+				<input type="text" id="zip" name="zip" placeholder="Your Zip Code *" onkeyup="clearError(this.id);">
 				<span class="invalidInput" id="zipError"></span>
 				
-				<select id="time_zone" name="time_zone">
+				<select id="time_zone" name="time_zone" onkeyup="clearError(this.id);">
 					<option value="">Select time zone *</option>
 					<?php foreach($timezones as $key => $value) 
 					{
@@ -253,6 +253,12 @@
 				$('#nameError').html('Please enter you full name');
 				return false;
 			}
+			else if($('#email').val() == '')
+			{
+				$('#email').focus();
+				$('#emailError').html('Please enter email');
+				return false;
+			}
 			else if($('#password').val() == '')
 			{
 				$('#password').focus();
@@ -269,12 +275,6 @@
 			{
 				$('#confirmPassword').focus();
 				$('#confirmPasswordError').html('Confirm Password does not match');
-				return false;
-			}
-			else if($('#email').val() == '')
-			{
-				$('#email').focus();
-				$('#emailError').html('Please enter email');
 				return false;
 			}
 			else if($('#phone').val() == '')
@@ -454,5 +454,10 @@
 		});
 
 	});
+
+	function clearError(elemId)
+	{ 
+		$('#'+elemId+'Error').html('');
+	} 
 
 </script>

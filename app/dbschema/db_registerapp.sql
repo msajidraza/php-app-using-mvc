@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 01, 2021 at 09:21 AM
+-- Generation Time: Jun 03, 2021 at 11:55 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -40,9 +40,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `state` varchar(25) NOT NULL,
   `country` varchar(50) NOT NULL,
   `zip` varchar(15) DEFAULT NULL,
-  `time_zone` varchar(100) DEFAULT NULL,
+  `time_zone` varchar(255) DEFAULT NULL,
   `profile_pic` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
+  `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 COMMIT;

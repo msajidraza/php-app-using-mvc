@@ -10,10 +10,10 @@
 
 			<form id="myForm" name="myForm">
 
-				<input type="text" id="username" name="username" placeholder="Email *">
+				<input type="text" id="username" name="username" placeholder="Email *" onkeyup="clearError(this.id);">
 				<span class="invalidInput" id="usernameError"></span>
 				
-				<input type="password" id="password" name="password" placeholder="Password *">
+				<input type="password" id="password" name="password" placeholder="Password *" onkeyup="clearError(this.id);">
 				<span class="invalidInput" id="passwordError"></span>
 
 				<button type="submit" id="btnsubmit" value="submit">Login</button>
@@ -111,5 +111,10 @@
 		});
 
 	});
+
+	function clearError(elemId)
+	{ 
+		$('#'+elemId+'Error').html('');
+	} 
 
 </script>
