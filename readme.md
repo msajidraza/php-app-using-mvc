@@ -24,8 +24,7 @@ set the variables as per your environment
 
 Run the application by locating below URL in the browser
 
-http://localhost/nameofd![home_screen](https://user-images.githubusercontent.com/66771414/120653213-1d46fb00-c49e-11eb-9eba-8d8d3476f328.jpg)
-irectory/
+http://localhost/nameofdirectory/
 
 i.e. http://localhost/php-app-using-mvc/
 
