@@ -18,7 +18,7 @@
 
 				<button type="submit" id="btnsubmit" value="submit">Login</button>
 
-				<p class="options">Not a registered user ? <a href="<?php echo APP_URL; ?>/users/register">Register</a></p>
+				<p class="options">Not a registered user ? <a href="<?php echo APP_URL; ?>/users/register">Register</a> | <a href="<?php echo APP_URL; ?>/pages/index">Home</a></p>
 
 			</form>
 
@@ -90,7 +90,7 @@
 						{
 							if(data['response'] == 'LoggedIn')
 							{
-								setTimeout(' window.location.href = "<?php echo APP_URL; ?>/users/profile"; ',1000);
+								setTimeout(' window.location.href = "<?php echo APP_URL; ?>/users/profile"; ',500);
 							}
 							else
 							{

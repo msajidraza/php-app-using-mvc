@@ -55,11 +55,37 @@ html, body {
 
 .profile-wrapper {
 	width: 70%;
+	min-height: 340px;
 	margin: 0 auto;
-	padding: 20px 0 20px 0;
-	text-align: center;
+	padding: 30px;
 	border: 1px solid #d5d8dc ;
 	background-color: #fff;
+}
+
+.profile-wrapper h1 {
+    font-size: 28px;
+    color:  #283747;
+    margin: 0;
+    font-weight: 500;
+}
+
+.profile-wrapper h2 {
+    font-size: 24px;
+    color:  #283747;
+    margin: 0;
+    font-weight: 500;
+}
+
+.profile-value{
+	font-size: 18px; 
+	color: #2c3e50;
+}
+
+.profile-label{
+	font-size: 14px; 
+	font-style: italic; 
+	color: #138d75 ; 
+	margin-bottom: 15px;
 }
 
 .login-wrapper {
@@ -101,7 +127,27 @@ input::placeholder {
     border: 1px solid #73c6b6;
     background-color: #fff;
     transition: 0.15s ease-in;
+}
+
+.login-wrapper select {
+	/*width: 350px;*/
+	width: 68%;
+	border: 1px solid #cccccc;
+	background-color: #f5f5f5;
+	font-size: 16px;
+	color:  #34495e;
+	letter-spacing: 1px;
+	display: block;
+	position: relative;
+	margin: 20px auto 0;
+	padding: 8px;
 } 
+
+.login-wrapper select:focus {
+    border: 1px solid #73c6b6;
+    background-color: #fff;
+    transition: 0.15s ease-in;
+}
 
 .login-wrapper h2 {
 	font-size: 40px;
@@ -125,6 +171,57 @@ input::placeholder {
     background-color: #239b56 ;
     transition: 0.15s ease-in;
 }
+
+.btn-logout{
+	font-size: 18px; 
+	border: 1px solid #ec7063; 
+	background-color: #ec7063; 
+	color: #f9ebea; 
+	padding: 10px 20px 10px 20px; 
+	text-decoration: none;
+}
+
+.btn-logout:hover {
+	border: 1px solid #e74c3c; 
+	background-color: #e74c3c; 
+	color: #fdfefe; 
+	transition: 0.15s ease-in;
+}
+
+.btn-signup{
+	font-size: 18px; 
+	border: 1px solid #5499c7; 
+	background-color: #5499c7; 
+	color: #212f3c; 
+	padding: 10px 20px 10px 20px; 
+	border-radius: 3px; 
+	text-decoration: none;
+}
+
+.btn-signup:hover {
+	border: 1px solid #2874a6; 
+	background-color: #2874a6; 
+	color: #fdfefe; 
+	transition: 0.25s ease-in;
+}
+
+.btn-signin{
+	font-size: 18px; 
+	border: 1px solid #45b39d; 
+	background-color: #45b39d; 
+	color: #212f3c; 
+	padding: 10px 20px 10px 20px;
+	border-radius: 3px; 
+	text-decoration: none;
+}
+
+.btn-signin:hover {
+	border: 1px solid #138d75 ; 
+	background-color: #138d75 ; 
+	color: #fdfefe; 
+	transition: 0.25s ease-in;
+}
+
 
 .options a {
     color:  #273746; 
