@@ -5,13 +5,15 @@
 ---------------------------------------------------------------
 About the Project
 ---------------------------------------------------------------
-This is a simple registration application, in which user can register himself and login to view his profile.
+This is a simple registration application, in which user can register himself/herself and login to view his/her profile.
 Application consist of four pages, whose screenshot are listed below;
 
 1. Landing page (Home Page).
 2. Registration form.
 3. Login form.
 4. Profile page.
+
+you can understand better by installing this application.
 
 ---------------------------------------------------------------
 Technical Details
